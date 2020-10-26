@@ -52,3 +52,29 @@ def edit_profile(request):
     return render(request, 'profile/edit-profile.html', {
         "form": form,
     })
+
+
+
+# @login_required(login_url='/accounts/login/')
+def view_project(request, id):
+    """
+    Function that enables one to view specific project
+    """
+    title = "View Project"
+    project = Project.get_pro_by_id(id=id)
+
+    return render(request, 'view_project.html', locals())
+
+
+
+# @login_required(login_url='/accounts/login/')
+def profile(request, user_id):
+    """
+    Function that enables one to see their profile
+    """
+    title = "Profile"
+    pros = Project.get_pro_by_user(id=user_id).order_by('-posted_on')
+    profiles = Profile.objects.get(user_id=user_id)
+    users = User.objects.get(id=user_id)
+    return render(request, 'profile/profile.html', locals())
+

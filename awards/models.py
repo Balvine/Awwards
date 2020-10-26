@@ -1,8 +1,6 @@
-from django.db import models
-from django.http import HttpResponse
 from django.contrib.auth.models import User
-# import datetime as dt
-# from django.db import models
+import datetime as dt
+from django.db import models
 # from django.db.models.signals import post_save
 # from django.dispatch import receiver
 # import numpy as np
@@ -47,4 +45,24 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.bio
+
+
+class Project(models.Model):
+    """
+    Class that contains Project details
+    """
+    title = models.CharField(max_length=20)
+    landing_page = models.ImageField(upload_to='images/')
+    description = models.TextField()
+    link = models.URLField(max_length=100)
+    rating = models.TextField()
+    posted_on = models.DateTimeField(auto_now_add=True)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def save_pro(self):
+        self.save()
+
+    def del_pro(self):
+        self.delete()
 
