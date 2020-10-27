@@ -101,25 +101,25 @@ class Project(models.Model):
 class DesignRating(models.Model):
     RATING_CHOICES = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'),
                       (6, '6'), (7, '7'), (8, '8'), (9, '9'), (10, '10'))
-    project = models.ForeignKey(Project,on_delete = models.CASCADE)
+    project = models.ForeignKey(Project)
     pub_date = models.DateTimeField(auto_now=True)
-    profile = models.ForeignKey(Profile,on_delete = models.CASCADE)
+    profile = models.ForeignKey(Profile)
     rating = models.IntegerField(choices=RATING_CHOICES, default=0)
 
 
 class ContentRating(models.Model):
     RATING_CHOICES = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'),
                       (6, '6'), (7, '7'), (8, '8'), (9, '9'), (10, '10'))
-    project = models.ForeignKey(Project,on_delete = models.CASCADE)
+    project = models.ForeignKey(Project)
     pub_date = models.DateTimeField(auto_now=True)
-    profile = models.ForeignKey(Profile,on_delete = models.CASCADE)
+    profile = models.ForeignKey(Profile)
     rating = models.IntegerField(choices=RATING_CHOICES, default=0)
 
 
 class UsabilityRating(models.Model):
     RATING_CHOICES = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'),
                       (6, '6'), (7, '7'), (8, '8'), (9, '9'), (10, '10'))
-    project = models.ForeignKey(Project,on_delete = models.CASCADE)
+    project = models.ForeignKey(Project)
     pub_date = models.DateTimeField(auto_now=True)
-    profile = models.ForeignKey(Profile,on_delete = models.CASCADE)
+    profile = models.ForeignKey(Profile)
     rating = models.IntegerField(choices=RATING_CHOICES, default=0)

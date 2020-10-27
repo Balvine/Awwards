@@ -6,7 +6,7 @@ from .models import Project, Profile
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.views import APIView
-# from .serializer import ProfSerializer, ProjectSerializer
+from .serializer import ProfSerializer, ProjectSerializer
 from .permissions import IsAuthenticatedOrReadOnly
 from rest_framework import status
 
