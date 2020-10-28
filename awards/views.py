@@ -41,7 +41,7 @@ def new_project(request):
     return render(request, 'new_pro.html', {"form": form})
 
 
-@login_required(login_url='/accounts/login/')
+# @login_required(login_url='/accounts/login/')
 def edit_profile(request):
     """
     Function that enables one to edit their profile information

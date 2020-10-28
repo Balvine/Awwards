@@ -19,17 +19,6 @@ class Profile(models.Model):
         primary_key=True,
     )
 
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
-
-    post_save.connect(save_user_profile, sender=User)
-
     def save_profile(self):
         self.save()
 
@@ -43,6 +32,14 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.bio
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 
 class Project(models.Model):

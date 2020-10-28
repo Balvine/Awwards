@@ -1,35 +1,45 @@
-{% load bootstrap3 %}
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
+{%extends "registration/base.html"%} {% load bootstrap3 %} {% load static %} {% block styles%} {{block.super}}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet"> {% endblock %} {% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Empty div -->
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {% if form.errors %}
+            <p> Password or Username is incorrect </p>
+            {% endif %}
+            <div class="panel panel-default">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+                <div class="panel-heading">
+                    <h3 class="text-center">Sign In</h3>
+                </div>
+                <div class="panel-body">
 
+                    <form action="/accounts/login/" method="post">
+                        {% csrf_token %} {% bootstrap_form form%}
 
-  {%if title%}
+                        <div class="form-group">
 
-  <title>{{title}}</title>
+                            <input type="submit" class="btn btn-info btn-md" value="Login">
+                            <br>
+                            <br>
+                            <p>Don't have an account? <a href="/accounts/register/">Sign up</a>
 
-  {%endif%}
+                        </div>
 
-  {% block styles %}
-    {% bootstrap_css %}
-  {% endblock %}
+                        <input type="hidden" name="next" value="{{next}}">
 
-</head>
+                    </form>
 
-<body>
+                </div>
 
-  {% block content %}  {%endblock%}
+            </div>
 
+        </div>
+        <!-- empty div -->
+        <div class="col-md-4"></div>
+    </div>
+</div>
 
-  {% block scripts %}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% bootstrap_javascript %}
-  {% endblock %}
-
-</body>
-
-</html>
+{% endblock %}
